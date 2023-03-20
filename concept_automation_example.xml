@@ -1,0 +1,1272 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<survey 
+  alt="000000 - Fruit Study (CP Template V2 Test)"
+  autoRecover="1"
+  autosave="0"
+  browserDupes="safe"
+  builder:wizardCompleted="1"
+  builderCompatible="1"
+  compat="139"
+  displayOnError="all"
+  extraVariables="source,record,decLang,list,userAgent"
+  fir="on"
+  html:showNumber="0"
+  mobile="compat"
+  mobileDevices="smartphone,tablet,desktop"
+  name="Survey"
+  secure="1"
+  setup="term,decLang,quota,time"
+  ss:disableBackButton="1"
+  ss:enableNavigation="0"
+  ss:hideProgressBar="1"
+  ss:listDisplay="0"
+  ss:logoAlt=""
+  ss:logoFile=""
+  ss:logoPosition=""
+  state="testing"
+  trackVars="checkbox">
+
+<res label="child_age_error">Please make sure that you select the age(s) of only for the number of children selected in the previous question.</res>
+<res label="child_age_noanswer">Please select atleast 1 response.</res>
+<res label="image_resource"><div style="text-align:center;"><img src="[rel %s.PNG]" class="concept_image" /></div></res>
+<condition label="marker__Click" cond="hasMarker('Click')">Click</condition>
+<samplesources>
+  <samplesource list="113">
+    <title>7.24.20 Fulcrum</title>
+    <invalid>You are missing information in the URL. Please verify the URL with the original invite.</invalid>
+    <completed>It seems you have already entered this survey.</completed>
+    <var name="RID" required="1"/>
+    <var name="Link"/>
+    <exit cond="terminated" url="https://www.samplicio.us/s/ClientCallBack.aspx?RIS=20&amp;RID=${RID}"/>
+    <exit cond="overquota" url="https://www.samplicio.us/s/ClientCallBack.aspx?RIS=40&amp;RID=${RID}"/>
+    <exit cond="qualified" url="https://www.samplicio.us/s/ClientCallBack.aspx?RIS=10&amp;RID=${RID}"/>
+  </samplesource>
+
+  <samplesource list="2">
+    <title>6.18.19 Prodege</title>
+    <invalid>You are missing information in the URL. Please verify the URL with the original invite.</invalid>
+    <completed>It seems you have already entered this survey.</completed>
+    <var name="transaction_id" required="1"/>
+    <exit cond="terminated" url="https://pod.prodegemr.com/prodegemr/unsigned-transaction-completion?apik=PAT!HMpwEa8t$I&amp;transaction_id=${transaction_id}&amp;completion_type=3"/>
+    <exit cond="overquota" url="https://pod.prodegemr.com/prodegemr/unsigned-transaction-completion?apik=PAT!HMpwEa8t$I&amp;transaction_id=${transaction_id}&amp;completion_type=2"/>
+    <exit cond="qualified" url="https://pod.prodegemr.com/prodegemr/unsigned-transaction-completion?apik=PAT!HMpwEa8t$I&amp;transaction_id=${transaction_id}&amp;completion_type=1"/>
+  </samplesource>
+
+  <samplesource keyring="sys/rn" list="101" sign="out,in">
+    <title>Dynata 4.2.21</title>
+    <invalid>You are missing information in the URL. Please verify the URL with the original invite.</invalid>
+    <completed>It seems you have already entered this survey.</completed>
+    <var name="psid" unique="1"/>
+    <exit cond="terminated" url="https://dkr1.ssisurveys.com/projects/end?rst=2&amp;psid=${psid}"/>
+    <exit cond="overquota" url="https://dkr1.ssisurveys.com/projects/end?rst=3&amp;psid=${psid}"/>
+    <exit cond="qualified" url="https://dkr1.ssisurveys.com/projects/end?rst=1&amp;psid=${psid}"/>
+  </samplesource>
+
+  <samplesource keyring="sys/ps" list="4" sign="out">
+    <title>Pure Spectrum 6.22.21</title>
+    <invalid>You are missing information in the URL. Please verify the URL with the original invite.</invalid>
+    <completed>It seems you have already entered this survey.</completed>
+    <var name="transaction_id" unique="1"/>
+    <exit cond="terminated" url="https://spectrumsurveys.com/surveydone?st=18&amp;transaction_id=${transaction_id}"/>
+    <exit cond="overquota" url="https://spectrumsurveys.com/surveydone?st=17&amp;transaction_id=${transaction_id}"/>
+    <exit cond="qualified" url="https://spectrumsurveys.com/surveydone?st=21&amp;transaction_id=${transaction_id}"/>
+  </samplesource>
+</samplesources>
+
+<suspend/>
+
+<quota overquota="noqual" sheet="TotalClick"/>
+
+<suspend/>
+
+<style cond="1" name="survey.respview.footer.support"/>
+<style name="respview.client.js"><![CDATA[
+<script>
+$ (document).ready(function(){
+$ ('.footer').append('<div class="Footercheck1" style="text-align: center;" data-mce-style="text-align: center;"><a href="https://www.gutcheckit.com/privacy-policy" target="_blank" rel="noopener" data-mce-href="https://www.gutcheckit.com/privacy-policy">Privacy Policy</a> - <a data-mce-href="/support" href="/support" target="_blank" rel="noopener" title="Help" data-mce-selected="inline-boundary"> Help</a></div>');
+
+	var $submitButton = $ ("#btn_continue, #btn_finish");
+
+	if ($ ("#comment_recaptcha_captcha").length >0){
+		$submitButton.hide();
+	}
+
+	var clrIntrval = setInterval(function(){
+		$submitButton.show();
+		clearInterval(clrIntrval);
+	},5000);
+
+
+	$ (function () { $ (this).bind("contextmenu", function (e) { e.preventDefault(); }); }); 
+
+//ctrl keys disable - CODE START
+	document.onkeydown = function(e) {
+		if (e.ctrlKey && (e.keyCode === 85 )) {
+			return false;
+		}
+	};
+//ctrl keys disable - CODE END
+
+//F12 key disable - CODE START
+	window.oncontextmenu = function () {
+		return false;
+	}
+	$ (document).keydown(function (event) {
+	if (event.keyCode == 123) {
+		return false;
+	}
+	else if ((event.ctrlKey && event.shiftKey && event.keyCode == 73) || (event.ctrlKey && event.shiftKey && event.keyCode == 74)) {
+		return false;
+	}
+	});
+//F12 key disable - CODE END
+
+//Click to Enlarge code - CODE START
+	$ ("body").prepend(' <div id="myModal" class="modal">   <span class="close">X</span>   <img class="modal-content" id="img01" />   <div id="caption"></div> </div>');
+
+	var modal = document.getElementById('myModal');
+
+// Get the image and insert it inside the modal - use its "alt" text as a caption
+	var img = document.getElementById('myImg');
+	var modalImg = document.getElementById("img01");
+	var captionText = document.getElementById("caption");
+	var span = document.getElementsByClassName("close")[0];
+
+
+	$ (".concept_image").click(function(){
+		modal.style.display = "block";
+		var new_src = $ (this).attr("src");
+		second_image = $ (this);
+		modalImg.src = new_src;
+		captionText.innerHTML = this.alt;
+		$ ("#img01").css("max-width","70%");
+// Increase the IMAGE SIZE RIGHT HERE ^^^
+		
+	});
+
+	span.onclick = function() { 
+		modal.style.display = "none";
+	}
+
+
+//Click to Enlarge code - CODE END
+
+//Adjust the width of the textbox on mobile devices here - CODE START
+	if( /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ) {
+		$ ("textarea.input").css("width","300px");
+		$ ("input[type=text]").css("width","100px");
+	}
+});
+//Adjust the width of the textbox on mobile devices here - CODE END
+
+</script>
+
+<style type="text/css">
+
+#myImg {
+    border-radius: 5px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+#myImg:hover {opacity: 0.7;}
+
+/* The Modal (background) */
+.modal {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    padding-top: 100px; /* Location of the box */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+  background: rgba(0,0,0,0.9) !important;
+}
+
+/* Modal Content (image) */
+.modal-content {
+    margin: auto;
+    display: block;
+    max-width: 1100px;
+}
+
+\@-webkit-keyframes zoom {
+    from {-webkit-transform:scale(0)} 
+    to {-webkit-transform:scale(1)}
+}
+
+\@keyframes zoom {
+    from {transform:scale(0)} 
+    to {transform:scale(1)}
+}
+
+\@media only screen and (max-width: 700px){
+    .modal-content {
+        width: 100%;
+    }
+}
+
+/* Caption of Modal Image */
+#caption {
+    margin: auto;
+    display: block;
+    width: 80%;
+    max-width: 700px;
+    text-align: center;
+    color: #ccc;
+    padding: 10px 0;
+    height: 150px;
+}
+
+/* Add Animation */
+.modal-content, #caption {    
+    -webkit-animation-name: zoom;
+    -webkit-animation-duration: 0.6s;
+    animation-name: zoom;
+    animation-duration: 0.6s;
+}
+
+/* The Close Button */
+.close {
+    position: absolute;
+    top: 15px;
+    right: 35px;
+    color: #f1f1f1;
+    font-size: 40px;
+    font-weight: bold;
+    transition: 0.3s;
+}
+
+.concept_image {
+	-webkit-box-shadow: 0 8px 6px -6px black;
+	   -moz-box-shadow: 0 8px 6px -6px black;
+	        box-shadow: 0 8px 6px -6px black;
+	        width: 50%;
+}
+
+.close:hover,
+.close:focus {
+    color: #bbb;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+
+</style>
+]]></style>
+<suspend/>
+
+<block label="concept_setup" builder:title="Concept Loop Setup">
+  <note>Things to change: 
+
+concept_number: how many concepts (out of 10) will you use?
+
+primefill: what are the names of your concepts? 
+(reminder: concept names must match image names)
+
+replace the placeholder names with rows used, do not delete unused rows!</note>
+  <exec when="init">
+concept_number = 6
+  </exec>
+
+  <exec>
+for eachrow in primefill.rows:
+	if int(eachrow.label.replace('r','')) le concept_number:
+		eachrow.val = 1
+  </exec>
+
+  <autofill label="primefill" randomize="0" where="execute,survey,report">
+    <title>Concept Name List</title>
+    <row label="r1">Bananas</row>
+    <row label="r2">Kiwi</row>
+    <row label="r3">Lemons</row>
+    <row label="r4">Melons</row>
+    <row label="r5">Oranges</row>
+    <row label="r6">Peaches</row>
+    <row label="r7">PLACEHOLDER_7</row>
+    <row label="r8">PLACEHOLDER_8</row>
+    <row label="r9">PLACEHOLDER_9</row>
+    <row label="r10">PLACEHOLDER_10</row>
+  </autofill>
+
+  <suspend/>
+
+  <html label="initial_concept_count" where="execute,survey,report">Concept # Check = ${primefill.count}</html>
+
+  <suspend/>
+
+  <exec>
+for eachrow in numberfill.rows: 
+		if int(eachrow.label.replace('r','')) le primefill.count:
+			eachrow.val = 1
+  </exec>
+
+  <autofill label="numberfill" randomize="0" where="execute,survey,report">
+    <title>Concept Quotas Autofill</title>
+    <row label="r1">Concept_1</row>
+    <row label="r2">Concept_2</row>
+    <row label="r3">Concept_3</row>
+    <row label="r4">Concept_4</row>
+    <row label="r5">Concept_5</row>
+    <row label="r6">Concept_6</row>
+    <row label="r7">Concept_7</row>
+    <row label="r8">Concept_8</row>
+    <row label="r9">Concept_9</row>
+    <row label="r10">Concept_10</row>
+  </autofill>
+</block>
+
+<suspend/>
+
+<html label="intro_confidential_2021" where="survey">Thank you for participating in this study hosted by GutCheck. If you qualify for and complete the entire survey, it should take you approximately 10 minutes total. Please provide your honest feedback. For your successful completion of the survey, you will be awarded an incentive in your panel account as per the usual incentive crediting process. <br /><br />By continuing and participating in this survey, you agree that you will keep the questions and information presented in the survey confidential and that you will not use or disclose to anyone else anything learned from this survey. <br /><br />By continuing and participating in this survey, you also consent to our collection, use and sharing of information as described in our Privacy Policy, which can be accessed <u><a href="https://www.gutcheckit.com/privacy-policy/" target="_blank" rel="noopener">here</a></u>, and consent to the terms of our Acceptable Use Policy, which can be accessed <u><a href="https://www.gutcheckit.com/acceptable-use-policy/" target="_blank" rel="noopener">here</a></u>.</html>
+
+<suspend/>
+
+<html label="cap_agree" cond="gv.survey.root.state.live" where="survey"><strong>On the next slide,</strong> please click the box that says "I'm not a robot" to continue with the study. You will be removed if you do not check this box.<br /><br />Please wait for the check mark to load on the next slide before clicking "Continue".</html>
+
+<suspend/>
+
+<logic label="recaptcha" cond="gv.survey.root.state.live" uses="recaptcha.1"/>
+<suspend/>
+
+<term cond="not recaptcha.human and gv.survey.root.state.live">Robot Term</term>
+
+<suspend/>
+
+<radio 
+  label="gender"
+  randomize="0">
+  <title>First, please select your gender.</title>
+  <comment>Select one</comment>
+  <row label="r1">Male</row>
+  <row label="r2">Female</row>
+  <row label="r3">Non-binary</row>
+  <row label="r99">Prefer not to say</row>
+</radio>
+
+<suspend/>
+
+<number 
+  label="age"
+  optional="0"
+  size="2"
+  verify="range(0,120)">
+  <title>Please enter your age.</title>
+  <comment>Please enter in years.</comment>
+</number>
+
+<suspend/>
+
+<term cond="not(age.check('18-65'))">Not 18 to 65 years old</term>
+
+<suspend/>
+
+<note>All studies should be asking the zipcode code question and punch state and region. If region is specified differently then the 4 below, remove region_4r and autocode it from State.</note>
+<block label="Zips" builder:title="New Block">
+  <exec when="init">
+def zipCodeFile(fname, zipHeader):
+  try:
+      zipCodesData = File( "%s/%s" % (gv.survey.path, fname), zipHeader)
+  except IOError:
+      zipCodesData = ""
+  return zipCodesData
+  </exec>
+
+  <exec when="init">
+ZIPCODES = zipCodeFile("zipcodes.dat", "ZipCode")
+  </exec>
+
+  <number 
+   label="zipCode"
+   optional="0"
+   randomize="0"
+   size="5"
+   verify="range(0,99999)">
+    <title>Please enter your 5-digit zip code.</title>
+  </number>
+
+  <suspend/>
+
+  <exec>
+RECORD = ZIPCODES.get( zipCode.val )
+
+if not(RECORD):
+  setMarker("zipInvalidTerm")
+  </exec>
+
+  <term cond="hasMarker('zipInvalidTerm')">Invalid Zip Code</term>
+</block>
+
+<suspend/>
+
+<datasource label="ds1" datasourceKey="ZipCode" filename="zipcodes.dat" normalizeKey="none" ourKey="zipCode.val" storedVariables="city:text,county:text,state:text,stateabbr:text">
+  <title>Zipcode_new.dat</title>
+  <text 
+   label="Zipcode_dat_city"
+   dataRef="city"
+   dataSource="ds1"
+   where="execute,survey,report">
+    <title>City</title>
+  </text>
+
+  <text 
+   label="Zipcode_dat_county"
+   dataRef="county"
+   dataSource="ds1"
+   where="execute,survey,report">
+    <title>ST</title>
+  </text>
+
+  <text 
+   label="Zipcode_dat_state"
+   dataRef="state"
+   dataSource="ds1"
+   where="execute,survey,report">
+    <title>state</title>
+  </text>
+
+  <text 
+   label="Zipcode_dat_stateabbr"
+   dataRef="stateabbr"
+   dataSource="ds1"
+   where="execute,survey,report">
+    <title>state abbr</title>
+  </text>
+</datasource>
+
+<stylevar name="cs:STATEvar"/>
+<suspend/>
+
+<exec>
+print Zipcode_dat_stateabbr.val
+
+StylINS=""
+StylINS=Zipcode_dat_stateabbr.val
+
+cnt=0
+for r in US_State.rows:
+ if r.styles.cs.STATEvar==StylINS:
+  US_State.val=US_State.attr(r.label).index
+  cnt=cnt+1
+  
+if cnt==0:
+ US_State.val=US_State.ch98.index
+</exec>
+
+<radio 
+  label="US_State"
+  optional="1"
+  where="execute,survey,report">
+  <title>Marker vaiable for US State.</title>
+  <row label="ch1" cs:STATEvar="AL">Alabama</row>
+  <row label="ch2" cs:STATEvar="AK">Alaska</row>
+  <row label="ch3" cs:STATEvar="AZ">Arizona</row>
+  <row label="ch4" cs:STATEvar="AR">Arkansas</row>
+  <row label="ch5" cs:STATEvar="CA">California</row>
+  <row label="ch6" cs:STATEvar="CO">Colorado</row>
+  <row label="ch7" cs:STATEvar="CT">Connecticut</row>
+  <row label="ch8" cs:STATEvar="DE">Delaware</row>
+  <row label="ch9" cs:STATEvar="DC">District of Columbia</row>
+  <row label="ch10" cs:STATEvar="FL">Florida</row>
+  <row label="ch11" cs:STATEvar="GA">Georgia</row>
+  <row label="ch12" cs:STATEvar="HI">Hawaii</row>
+  <row label="ch13" cs:STATEvar="ID">Idaho</row>
+  <row label="ch14" cs:STATEvar="IL">Illinois</row>
+  <row label="ch15" cs:STATEvar="IN">Indiana</row>
+  <row label="ch16" cs:STATEvar="IA">Iowa</row>
+  <row label="ch17" cs:STATEvar="KS">Kansas</row>
+  <row label="ch18" cs:STATEvar="KY">Kentucky</row>
+  <row label="ch19" cs:STATEvar="LA">Louisiana</row>
+  <row label="ch20" cs:STATEvar="ME">Maine</row>
+  <row label="ch21" cs:STATEvar="MD">Maryland</row>
+  <row label="ch22" cs:STATEvar="MA">Massachusetts</row>
+  <row label="ch23" cs:STATEvar="MI">Michigan</row>
+  <row label="ch24" cs:STATEvar="MN">Minnesota</row>
+  <row label="ch25" cs:STATEvar="MS">Mississippi</row>
+  <row label="ch26" cs:STATEvar="MO">Missouri</row>
+  <row label="ch27" cs:STATEvar="MT">Montana</row>
+  <row label="ch28" cs:STATEvar="NE">Nebraska</row>
+  <row label="ch29" cs:STATEvar="NV">Nevada</row>
+  <row label="ch30" cs:STATEvar="NH">New Hampshire</row>
+  <row label="ch31" cs:STATEvar="NJ">New Jersey</row>
+  <row label="ch32" cs:STATEvar="NM">New Mexico</row>
+  <row label="ch33" cs:STATEvar="NY">New York</row>
+  <row label="ch34" cs:STATEvar="NC">North Carolina</row>
+  <row label="ch35" cs:STATEvar="ND">North Dakota</row>
+  <row label="ch36" cs:STATEvar="OH">Ohio</row>
+  <row label="ch37" cs:STATEvar="OK">Oklahoma</row>
+  <row label="ch38" cs:STATEvar="OR">Oregon</row>
+  <row label="ch39" cs:STATEvar="PA">Pennsylvania</row>
+  <row label="ch40" cs:STATEvar="RI">Rhode Island</row>
+  <row label="ch41" cs:STATEvar="SC">South Carolina</row>
+  <row label="ch42" cs:STATEvar="SD">South Dakota</row>
+  <row label="ch43" cs:STATEvar="TN">Tennessee</row>
+  <row label="ch44" cs:STATEvar="TX">Texas</row>
+  <row label="ch45" cs:STATEvar="UT">Utah</row>
+  <row label="ch46" cs:STATEvar="VT">Vermont</row>
+  <row label="ch47" cs:STATEvar="VA">Virginia</row>
+  <row label="ch48" cs:STATEvar="WA">Washington</row>
+  <row label="ch49" cs:STATEvar="WV">West Virginia</row>
+  <row label="ch50" cs:STATEvar="WI">Wisconsin</row>
+  <row label="ch51" cs:STATEvar="WY">Wyoming</row>
+  <row label="ch98" cs:STATEvar="OTHER">Other</row>
+</radio>
+
+<autofill label="region_4r" where="execute,survey,report">
+  <title>Regions based on US_State</title>
+  <row label="r1" autofill="(US_State.ch14 or US_State.ch15 or US_State.ch16 or US_State.ch17 or US_State.ch23 or US_State.ch24 or US_State.ch26 or US_State.ch28 or US_State.ch35 or US_State.ch36 or US_State.ch42 or US_State.ch50)">Midwest</row>
+  <row label="r2" autofill="(US_State.ch7 or US_State.ch20 or US_State.ch22 or US_State.ch30 or US_State.ch31 or US_State.ch33 or US_State.ch39 or US_State.ch40 or US_State.ch46)">Northeast</row>
+  <row label="r3" autofill="(US_State.ch1 or US_State.ch4 or US_State.ch9 or US_State.ch8 or US_State.ch10 or US_State.ch11 or US_State.ch18 or US_State.ch19 or US_State.ch21 or US_State.ch25 or US_State.ch34 or US_State.ch37 or US_State.ch41 or US_State.ch43 or US_State.ch44 or US_State.ch47 or US_State.ch49)">South</row>
+  <row label="r4" autofill="(US_State.ch2 or US_State.ch3 or US_State.ch5 or US_State.ch6 or US_State.ch12 or US_State.ch13 or US_State.ch27 or US_State.ch29 or US_State.ch32 or US_State.ch38 or US_State.ch45 or US_State.ch48 or US_State.ch51)">West</row>
+  <row label="none" autofill="region_4r.count == 0" builder:none="1"><i>None of These Classifications Apply</i></row>
+</autofill>
+
+<suspend/>
+
+<autofill label="age_breakdown" where="execute,survey,report">
+  <title>Autofill for Age in Appendix</title>
+  <row label="r1" autofill="(age.check('13-17'))">13 - 17</row>
+  <row label="r2" autofill="(age.check('18-24'))">18 - 24</row>
+  <row label="r3" autofill="(age.check('25-34'))">25 - 34</row>
+  <row label="r4" autofill="(age.check('35-44'))">35 - 44</row>
+  <row label="r5" autofill="(age.check('45-54'))">45 - 54</row>
+  <row label="r6" autofill="(age.check('55-65'))">55 - 65</row>
+  <row label="r7" autofill="(age.check('66-99'))">66+</row>
+  <row label="r99" autofill="age_breakdown.count == 0" builder:none="1"><i>None of These Classifications Apply</i></row>
+</autofill>
+
+<suspend/>
+
+<autofill label="AGfill" randomize="0" where="execute,survey,report">
+  <title>Age-Gender Autofill</title>
+  <row label="r1" autofill="(gender.r1) and (age.check('13-17'))">M_age1</row>
+  <row label="r2" autofill="(gender.r1) and (age.check('18-34'))">M_age2</row>
+  <row label="r3" autofill="(gender.r1) and (age.check('35-50'))">M_age3</row>
+  <row label="r4" autofill="(gender.r1) and (age.check('51-65'))">M_age4</row>
+  <row label="r5" autofill="(gender.r2) and (age.check('13-17'))">F_age1</row>
+  <row label="r6" autofill="(gender.r2) and (age.check('18-34'))">F_age2</row>
+  <row label="r7" autofill="(gender.r2) and (age.check('35-50'))">F_age3</row>
+  <row label="r8" autofill="(gender.r2) and (age.check('51-65'))">F_age4</row>
+  <row label="r99" autofill="AGfill.count == 0" builder:none="1"><i>None of These Classifications Apply</i></row>
+</autofill>
+
+<suspend/>
+
+<block label="b4" cond="(gender.r1 or gender.r2)" builder:title="Click Outlay Block">
+  <block label="b1" builder:title="(DO NOT EDIT) Total Click Block">
+    <note>DO NOT EDIT: The following "exec" tag applies to the Click Quota in the beginning of the study. Altering this code will break the functionality of the study.</note>
+    <exec>
+cells = gv.survey.root.quota.getQuotaCells()
+overall_clicks = cells['/TotalClick/Click'][1]
+
+#Used to call the clicks we have gotten
+    </exec>
+  </block>
+
+  <suspend/>
+
+  <block label="b2" builder:title="(EDIT) Click Outlay Block">
+    <note>EDIT: The following "exec" element can be edited in the builder. 
+	
+	This element controls the percentages of each segment in the study. Each demographic should add up to 100%. For example, all age and gender segments should total 100%, while each region segment should total 100%.
+	
+	DO NOT DELETE any of the expressions. If you do not need a certain segment, simply set the variable to equal "0". For example, M_Age1=0 would mean we do not have any respondents in that segment.</note>
+    <exec when="init">
+M_age1=0.0
+M_age2=1.0
+M_age3=1.0
+M_age4=1.0
+F_age1=0.0
+F_age2=1.0
+F_age3=1.0
+F_age4=1.0
+none=0.0
+
+#Update to get the percentages we are targeting for the Outlay
+    </exec>
+  </block>
+
+  <suspend/>
+
+  <block label="b3" builder:title="(DO NOT EDIT) Variables Block">
+    <note>DO NOT EDIT: The following "exec" tags apply to the necessary mathematical expressions of the algorithm. Altering this code will break the functionality of the study.</note>
+    <exec>
+p.M_age1_clicks = round(overall_clicks*M_age1)
+p.M_age2_clicks = round(overall_clicks*M_age2)
+p.M_age3_clicks = round(overall_clicks*M_age3)
+p.M_age4_clicks = round(overall_clicks*M_age4)
+p.F_age1_clicks = round(overall_clicks*F_age1)
+p.F_age2_clicks = round(overall_clicks*F_age2)
+p.F_age3_clicks = round(overall_clicks*F_age3)
+p.F_age4_clicks = round(overall_clicks*F_age4)
+p.none = round(overall_clicks*none)
+
+#Used to define variables
+    </exec>
+
+    <exec>
+if AGfill.r1:
+  	setMarker('M_age1')
+if AGfill.r2:
+  	setMarker('M_age2')
+if AGfill.r3:
+  	setMarker('M_age3')
+if AGfill.r4:
+  	setMarker('M_age4')
+if AGfill.r5:
+  	setMarker('F_age1')
+if AGfill.r6:
+  	setMarker('F_age2')
+if AGfill.r7:
+  	setMarker('F_age3')
+if AGfill.r8:
+  	setMarker('F_age4')
+if AGfill.r99:
+  	setMarker('none')
+  	
+#Used to set markers
+    </exec>
+
+    <suspend/>
+
+    <radio 
+    label="MRK_alert"
+    optional="1"
+    where="execute,survey">
+      <title>Need to sent an alert regarding Click-Outlay overquota?</title>
+      <exec>
+	    
+clicksT=["M_age1","M_age2","M_age3","M_age4","F_age1","F_age2","F_age3","F_age4"]
+clicksTArr=[p.M_age1_clicks,p.M_age2_clicks,p.M_age3_clicks,p.M_age4_clicks,p.F_age1_clicks,p.F_age2_clicks,p.F_age3_clicks,p.F_age4_clicks]
+p.checkCount=0
+sumo=0
+
+for i in range(len(clicksT)):
+ #print getMarker(clicksT[i])
+ val= clicksTArr[i]-40                         
+   
+ sumo=sumo+ getMarker(clicksT[i])
+OverallVal=overall_clicks-40                     
+#print OverallVal
+#print sumo
+if sumo  == OverallVal:
+   MRK_alert.val=MRK_alert.r99.index
+   
+#Used to determine if click term emails need to be sent
+      </exec>
+
+      <row label="r99">40 counts away from achieving Overall click Target</row>
+    </radio>
+
+    <suspend/>
+
+    <block label="PartialClick" cond="MRK_alert.count gt 0">
+      <logic label="ClickTermEmail1" email:company="Ugam - Gutcheck" email:content="&lt;strong style=&quot;color: #333333;&quot;&gt;&lt;strong&gt;Project Name&lt;/strong&gt;&lt;/strong&gt;&lt;span style=&quot;color: #333333;&quot;&gt;:&lt;br&gt;&lt;br&gt;&lt;strong&gt;&lt;strong&gt;Link:&amp;nbsp;&lt;/strong&gt;&lt;/strong&gt;&lt;span&gt;https://gutcheck.decipherinc.com/apps/portal/#/projects/detail/&lt;/span&gt;&lt;br&gt;&lt;/span&gt;&lt;br style=&quot;color: #333333;&quot;&gt;&lt;span style=&quot;color: #333333;&quot;&gt;&lt;strong&gt;&lt;strong&gt;&lt;strong&gt;&lt;strong&gt;This is a reminder to check your outlay, you are within 40 clicks from the TotalClick Quota&lt;/strong&gt;&lt;/strong&gt;&lt;/strong&gt;&lt;/strong&gt;.&amp;nbsp;&lt;/span&gt;&lt;span style=&quot;color: #333333;&quot;&gt;Remember, if you don't update the TotalClick Quota you will get Click terms met.&lt;/span&gt;" email:recipient="Gutcheck.ops@ugamsolutions.com" email:reply="" email:sender="TotalClick_Quota@gutcheckit.com" email:subject="Click Term about to meet : " uses="email.1"/>
+      <logic label="ClickTermEmail2" email:company="Ugam - Gutcheck" email:content="&lt;strong style=&quot;color: #333333;&quot;&gt;&lt;strong&gt;Project Name&lt;/strong&gt;&lt;/strong&gt;&lt;span style=&quot;color: #333333;&quot;&gt;:&lt;br&gt;&lt;br&gt;&lt;strong&gt;&lt;strong&gt;Link:&amp;nbsp;&lt;/strong&gt;&lt;/strong&gt;&lt;span&gt;https://gutcheck.decipherinc.com/apps/portal/#/projects/detail/&lt;/span&gt;&lt;br&gt;&lt;/span&gt;&lt;br style=&quot;color: #333333;&quot;&gt;&lt;span style=&quot;color: #333333;&quot;&gt;&lt;strong&gt;&lt;strong&gt;&lt;strong&gt;&lt;strong&gt;This is a reminder to check your outlay, you are within 40 clicks from the TotalClick Quota&lt;/strong&gt;&lt;/strong&gt;&lt;/strong&gt;&lt;/strong&gt;.&amp;nbsp;&lt;/span&gt;&lt;span style=&quot;color: #333333;&quot;&gt;Remember, if you don't update the TotalClick Quota you will get Click terms met.&lt;/span&gt;" email:recipient="GutCheck.Ops.SP@ugamsolutions.com" email:reply="" email:sender="TotalClick_Quota@gutcheckit.com" email:subject="Click Term about to meet : " uses="email.1"/>
+      <logic label="ClickTermEmail3" email:company="Ugam - Gutcheck" email:content="&lt;strong style=&quot;color: #333333;&quot;&gt;&lt;strong&gt;Project Name&lt;/strong&gt;&lt;/strong&gt;&lt;span style=&quot;color: #333333;&quot;&gt;:&lt;br&gt;&lt;br&gt;&lt;strong&gt;&lt;strong&gt;Link:&amp;nbsp;&lt;/strong&gt;&lt;/strong&gt;&lt;span&gt;https://gutcheck.decipherinc.com/apps/portal/#/projects/detail/&lt;/span&gt;&lt;br&gt;&lt;/span&gt;&lt;br style=&quot;color: #333333;&quot;&gt;&lt;span style=&quot;color: #333333;&quot;&gt;&lt;strong&gt;&lt;strong&gt;&lt;strong&gt;&lt;strong&gt;This is a reminder to check your outlay, you are within 40 clicks from the TotalClick Quota&lt;/strong&gt;&lt;/strong&gt;&lt;/strong&gt;&lt;/strong&gt;.&amp;nbsp;&lt;/span&gt;&lt;span style=&quot;color: #333333;&quot;&gt;Remember, if you don't update the TotalClick Quota you will get Click terms met.&lt;/span&gt;" email:recipient="GutCheck.Ops.RA@ugamsolutions.com" email:reply="" email:sender="TotalClick_Quota@gutcheckit.com" email:subject="Click Term about to meet : " uses="email.1"/>    </block>
+
+    <term cond="(hasMarker('M_age1')) and (getMarker('M_age1') gt p.M_age1_clicks)" markers="clickTerm">Male Age 1 Clicks Met</term>
+
+    <term cond="(hasMarker('M_age2')) and (getMarker('M_age2') gt p.M_age2_clicks)" markers="clickTerm">Male Age 2 Clicks Met</term>
+
+    <term cond="(hasMarker('M_age3')) and (getMarker('M_age3') gt p.M_age3_clicks)" markers="clickTerm">Male Age 3 Clicks Met</term>
+
+    <term cond="(hasMarker('M_age4')) and (getMarker('M_age4') gt p.M_age4_clicks)" markers="clickTerm">Male Age 4 Clicks Met</term>
+
+    <term cond="(hasMarker('F_age1')) and (getMarker('F_age1') gt p.F_age1_clicks)" markers="clickTerm">Female Age 1 Clicks Met</term>
+
+    <term cond="(hasMarker('F_age2')) and (getMarker('F_age2') gt p.F_age2_clicks)" markers="clickTerm">Female Age 2 Clicks Met</term>
+
+    <term cond="(hasMarker('F_age3')) and (getMarker('F_age3') gt p.F_age3_clicks)" markers="clickTerm">Female Age 3 Clicks Met</term>
+
+    <term cond="(hasMarker('F_age4')) and (getMarker('F_age4') gt p.F_age4_clicks)" markers="clickTerm">Female Age 4 Clicks Met</term>
+
+    <term cond="(hasMarker('none')) and (getMarker('none') gt p.none)" markers="clickTerm">None Clicks Met</term>
+
+    <suspend/>
+
+    <exec when="finished">
+if hasMarker('clickTerm'):
+  removeMarker('M_age1')
+  removeMarker('M_age2')
+  removeMarker('M_age3')
+  removeMarker('M_age4') 
+  removeMarker('F_age1')
+  removeMarker('F_age2')
+  removeMarker('F_age3')
+  removeMarker('F_age4')
+  removeMarker('none')
+  
+#Used to clear markers
+    </exec>
+
+    <exec>
+print p.markers
+    </exec>
+  </block>
+</block>
+
+<suspend/>
+
+<checkbox 
+  label="lowir"
+  atleast="1"
+  shuffle="rows"
+  where="survey">
+  <title>Over the past 12 months, which of the following apply to you?</title>
+  <comment>Select all that apply</comment>
+  <row label="r1">Traveled overseas for work</row>
+  <row label="r2">Went on a cruise for vacation</row>
+  <row label="r3">Went skydiving or bungee jumping</row>
+  <row label="r4">Visited the carnival 3 or more times</row>
+  <row label="r5">Published a book</row>
+  <row label="r6">Went scuba diving</row>
+  <row label="r7">Was issued a new driver's license</row>
+  <row label="r8">Purchased or replaced a garbage disposal</row>
+  <row label="r99" exclusive="1" randomize="0">None of the above</row>
+</checkbox>
+
+<suspend/>
+
+<autofill label="lowirfill" where="execute,survey">
+  <title>Low IR Autofill</title>
+  <row label="r1" autofill="(lowir.count&gt;3)">Low IR</row>
+  <row label="none" autofill="lowirfill.count == 0" builder:none="1"><i>None of These Classifications Apply</i></row>
+</autofill>
+
+<term cond="(lowir.count&gt;3)">QM TERMINATE, LOWIR COUNT IS 4 OR MORE</term>
+
+<suspend/>
+
+<block label="testing_and_loop" builder:title="Quotas &amp; Concept Testing + Loop">
+  <quota overquota="noqual" sheet="Overall Quota"/>
+
+  <suspend/>
+
+  <quota overquota="noqual" sheet="Concepts Assigned"/>
+
+  <suspend/>
+
+  <exec when="init">
+#grabs the number of concepts per respondent info from the quota table
+
+def quota_hook(sheet, table, cells):
+	if sheet == 'Concepts Assigned':
+		p.number_per_resp = table.cellCount
+	return cells
+  </exec>
+
+  <exec>
+#Punches each row into the concept group autofill elements
+
+for eachrow in conditionfill.rows:
+	if hasMarker('/Concepts Assigned/Concept_' + str(eachrow.label.replace('r',''))):
+		eachrow.val = 1
+
+for eachrow in conceptfill.rows:
+	if hasMarker('/Concepts Assigned/Concept_' + str(eachrow.label.replace('r',''))):
+		eachrow.val = 1
+
+for eachrow in autofill.rows:
+	if hasMarker('/Concepts Assigned/Concept_' + str(eachrow.label.replace('r',''))):
+		eachrow.val = 1
+  </exec>
+
+  <autofill label="conditionfill" onLoad="copy('numberfill', rows=True)" randomize="0" rowCond="numberfill[row]" where="execute,survey,report">
+    <title>Chosen Concepts by Quota</title>
+  </autofill>
+
+  <autofill label="conceptfill" onLoad="copy('primefill', rows=True)" randomize="0" where="execute,survey,report">
+    <title>Chosen Concepts by Name</title>
+  </autofill>
+
+  <suspend/>
+
+  <exec>
+beg = '${res.image_resource % '
+end = '.text}'
+  </exec>
+
+  <exec>
+for eachrow in autofill.rows:
+    eachrow.text = beg + 'primefill.r' + eachrow.label.replace('r','') + end
+  </exec>
+
+  <autofill label="autofill" onLoad="copy('primefill', rows=True)" randomize="0" where="execute,survey,report">
+    <title>Assignment by Image</title>
+  </autofill>
+
+  <suspend/>
+
+  <html label="testing_concept_count" where="execute,survey,report">concepts per respondent: ${p.number_per_resp}<br /><br />total concepts: ${primefill.count}</html>
+
+  <html label="testing_chosen_association" where="execute,survey,report">concept condition chosen: [pipe:conditionfill]<br /><br />image chosen: [pipe: autofill]<br /><br />concept name chosen: [pipe: conceptfill]</html>
+
+  <suspend/>
+
+  <pipe label="loop_number" capture="">
+    <case label="c2" cond="p.number_per_resp == 2">two</case>
+    <case label="c3" cond="p.number_per_resp == 3">three</case>
+    <case label="c4" cond="p.number_per_resp == 4">four</case>
+    <case label="c5" cond="p.number_per_resp == 5">five</case>
+    <case label="c99" cond="1">BAD PIPE</case></pipe>
+  <suspend/>
+
+  <html label="start_mono" cond="p.number_per_resp == 1" where="survey">You will be shown one concept.</html>
+
+  <html label="start_multi" cond="p.number_per_resp ge 2" where="survey">You will be shown [pipe: loop_number] concepts, one at a time.</html>
+
+  <suspend/>
+
+  <exec>
+p.concept_counter = 0
+  </exec>
+
+  <exec>
+p.straightline_counter = 0
+  </exec>
+
+  <suspend/>
+
+  <loop label="l1" builderSource="autofill" randomizeChildren="1" vars="autofill">
+    <title>Loop</title>
+    <block label="bl1" builder:title="default loop block">
+      <suspend/>
+
+      <note>this could be generated in a loop based on a variable</note>
+      <html label="concept_trans0_[loopvar: label]" cond="p.concept_counter==0 and p.number_per_resp == 1" randomize="0" where="survey"><p>This is the concept...</p>
+	<p>[loopvar: autofill]</p></html>
+
+      <html label="concept_trans1_[loopvar: label]" cond="p.concept_counter==0 and p.number_per_resp gt 1" randomize="0" where="survey"><p>This is the first concept...</p>
+	<p>[loopvar: autofill]</p></html>
+
+      <html label="concept_trans2_[loopvar: label]" cond="p.concept_counter==1 and p.number_per_resp ge 2" randomize="0" where="survey"><p>This is the second concept...</p>
+	<p>[loopvar: autofill]</p></html>
+
+      <html label="concept_trans3_[loopvar: label]" cond="p.concept_counter==2 and p.number_per_resp ge 3" randomize="0" where="survey"><p>This is the third concept...</p>
+	<p>[loopvar: autofill]</p></html>
+
+      <html label="concept_trans4_[loopvar: label]" cond="p.concept_counter==3 and p.number_per_resp ge 4" randomize="0" where="survey"><p>This is the fourth concept...</p>
+	<p>[loopvar: autofill]</p></html>
+
+      <html label="concept_trans5_[loopvar: label]" cond="p.concept_counter==4 and p.number_per_resp ge 5" randomize="0" where="survey"><p>This is the fifth concept...</p>
+	<p>[loopvar: autofill]</p></html>
+
+      <html label="concept_trans6_[loopvar: label]" cond="p.concept_counter==5 and p.number_per_resp ge 6" randomize="0" where="survey"><p>This is the sixth concept...</p>
+	<p>[loopvar: autofill]</p></html>
+
+      <html label="concept_trans7_[loopvar: label]" cond="p.concept_counter==6 and p.number_per_resp ge 7" randomize="0" where="survey"><p>This is the seventh concept...</p>
+	<p>[loopvar: autofill]</p></html>
+
+      <html label="concept_trans8_[loopvar: label]" cond="p.concept_counter==7 and p.number_per_resp ge 8" randomize="0" where="survey"><p>This is the eighth concept...</p>
+	<p>[loopvar: autofill]</p></html>
+
+      <html label="concept_trans9_[loopvar: label]" cond="p.concept_counter==8 and p.number_per_resp ge 9" randomize="0" where="survey"><p>This is the ninth concept...</p>
+	<p>[loopvar: autofill]</p></html>
+
+      <html label="concept_trans10_[loopvar: label]" cond="p.concept_counter==9 and p.number_per_resp ge 10" randomize="0" where="survey"><p>This is the tenth concept...</p>
+	<p>[loopvar: autofill]</p></html>
+
+      <suspend/>
+
+      <radio 
+     label="Purchase_Intent_[loopvar: label]"
+     optional="0"
+     randomize="0"
+     type="rating">
+        <title>[loopvar: autofill]<br /><br />Overall, how likely or unlikely would you be to purchase this product if it were available today?</title>
+        <comment>Select one</comment>
+        <row label="r1" value="5">Very likely</row>
+        <row label="r2" value="4">Likely</row>
+        <row label="r3" value="3">Neither likely nor unlikely</row>
+        <row label="r4" value="2">Unlikely</row>
+        <row label="r5" value="1">Very unlikely</row>
+      </radio>
+
+      <suspend/>
+
+      <radio 
+     label="Advantage_[loopvar: label]"
+     optional="0"
+     randomize="0"
+     type="rating"
+     values="reverse">
+        <title>[loopvar: autofill]<br /><br />How much of an advantage does this product have over what other products currently offer?</title>
+        <comment>Select one</comment>
+        <row label="r1">Strong advantage</row>
+        <row label="r2">Some advantage</row>
+        <row label="r3">No advantage or disadvantage</row>
+        <row label="r4">Some disadvantage</row>
+        <row label="r5">Strong disadvantage</row>
+      </radio>
+
+      <suspend/>
+
+      <radio 
+     label="Uniqueness_[loopvar: label]"
+     optional="0"
+     randomize="0"
+     type="rating">
+        <title>[loopvar: autofill]<br /><br />Please select your agreement or disagreement with the following statement: <br /><br /><em>This product is new and different from other products of this type currently available.</em></title>
+        <comment>Select one</comment>
+        <row label="r1" value="5">Strongly agree</row>
+        <row label="r2" value="4">Agree</row>
+        <row label="r3" value="3">Neither agree nor disagree</row>
+        <row label="r4" value="2">Disagree</row>
+        <row label="r5" value="1">Strongly disagree</row>
+      </radio>
+
+      <suspend/>
+
+      <exec>
+p.concept_counter = p.concept_counter + 1   
+
+#Update the Question Labels Here, If looprows are displayed for a question in the loop exclude it from the list. Only include Metric questions (5 points Scale Questions) 
+qid=["Purchase_Intent", "Advantage", "Uniqueness"]
+
+p.lenqid = len(qid)
+p.counter = 1
+for question in qid[1:]:
+	if eval("%s_[loopvar: label]" % qid[0]).val == eval("%s_[loopvar: label]" % question).val:
+		p.counter = p.counter + 1
+
+	
+print p.lenqid
+print p.counter
+
+if p.counter == p.lenqid:
+	p.straightline_counter = p.straightline_counter + 1
+      </exec>
+
+      <suspend/>
+    </block>
+
+    <looprow label="r1" cond="(autofill.r1)">
+      <loopvar name="autofill">${res.image_resource % conceptfill.r1.text}</loopvar>
+    </looprow>
+
+    <looprow label="r2" cond="(autofill.r2)">
+      <loopvar name="autofill">${res.image_resource % conceptfill.r2.text}</loopvar>
+    </looprow>
+
+    <looprow label="r3" cond="(autofill.r3)">
+      <loopvar name="autofill">${res.image_resource % conceptfill.r3.text}</loopvar>
+    </looprow>
+
+    <looprow label="r4" cond="(autofill.r4)">
+      <loopvar name="autofill">${res.image_resource % conceptfill.r4.text}</loopvar>
+    </looprow>
+
+    <looprow label="r5" cond="(autofill.r5)">
+      <loopvar name="autofill">${res.image_resource % conceptfill.r5.text}</loopvar>
+    </looprow>
+
+    <looprow label="r6" cond="(autofill.r6)">
+      <loopvar name="autofill">${res.image_resource % conceptfill.r6.text}</loopvar>
+    </looprow>
+
+    <looprow label="r7" cond="(autofill.r7)">
+      <loopvar name="autofill">${res.image_resource % conceptfill.r7.text}</loopvar>
+    </looprow>
+
+    <looprow label="r8" cond="(autofill.r8)">
+      <loopvar name="autofill">${res.image_resource % conceptfill.r8.text}</loopvar>
+    </looprow>
+
+    <looprow label="r9" cond="(autofill.r9)">
+      <loopvar name="autofill">${res.image_resource % conceptfill.r9.text}</loopvar>
+    </looprow>
+
+    <looprow label="r10" cond="(autofill.r10)">
+      <loopvar name="autofill">${res.image_resource % conceptfill.r10.text}</loopvar>
+    </looprow>
+  </loop>
+</block>
+
+<block label="demographics">
+  <note>Demographic Section: Remove all Demographics from this section not present in the QNR.</note>
+  <radio 
+   label="Marital_Status">
+    <title>Which of the following best describes your marital status?</title>
+    <comment>Select one</comment>
+    <row label="r1">Single</row>
+    <row label="r2">Married</row>
+    <row label="r3">Divorced</row>
+    <row label="r4">Widowed</row>
+    <row label="r5">Separated</row>
+    <row label="r6">Living with Partner</row>
+  </radio>
+
+  <suspend/>
+
+  <number 
+   label="Number_of_Children_in_HH"
+   optional="0"
+   size="3"
+   verify="range(0,10)">
+    <title>How many children under the age of 18 do you currently have living at home?</title>
+  </number>
+
+  <suspend/>
+
+  <autofill label="Children" where="execute,survey,report">
+    <title>How many children under the age of 18 do you currently have living at home?</title>
+    <row label="r1" autofill="(Number_of_Children_in_HH.check('0'))">0</row>
+    <row label="r2" autofill="(Number_of_Children_in_HH.check('1'))">1</row>
+    <row label="r3" autofill="(Number_of_Children_in_HH.check('2'))">2</row>
+    <row label="r4" autofill="(Number_of_Children_in_HH.check('3'))">3</row>
+    <row label="r5" autofill="(Number_of_Children_in_HH.check('4'))">4</row>
+    <row label="r6" autofill="(Number_of_Children_in_HH.check('5-10'))">5 or more</row>
+  </autofill>
+
+  <suspend/>
+
+  <note>Simulated data will skip Children_Age_Gender to avoid the validation errors.</note>
+  <checkbox 
+   label="Children_Age_Gender"
+   cond="not(Children.r1) and Children.any"
+   grouping="cols"
+   randomize="0"
+   sst="0">
+    <title>Please select the age(s) and gender(s) of your children.</title>
+    <comment>Select all that apply</comment>
+    <validate>
+child_count = 0
+Children_Age_Gender_count = 0
+	
+Children_Age_Gender_count = Children_Age_Gender.c1.count + Children_Age_Gender.c2.count
+	
+if not(Children.r6):
+	child_count = int(Number_of_Children_in_HH.val)
+	if Children_Age_Gender_count gt child_count:
+	 	error(res.child_age_error)
+	 
+if Children_Age_Gender_count == 0:
+	error(res.child_age_noanswer)
+    </validate>
+
+    <row label="r1">Less than 1</row>
+    <row label="r2">1</row>
+    <row label="r3">2</row>
+    <row label="r4">3</row>
+    <row label="r5">4</row>
+    <row label="r6">5</row>
+    <row label="r7">6</row>
+    <row label="r8">7</row>
+    <row label="r9">8</row>
+    <row label="r10">9</row>
+    <row label="r11">10</row>
+    <row label="r12">11</row>
+    <row label="r13">12</row>
+    <row label="r14">13</row>
+    <row label="r15">14</row>
+    <row label="r16">15</row>
+    <row label="r17">16</row>
+    <row label="r18">17</row>
+    <col label="c1">Male</col>
+    <col label="c2">Female</col>
+  </checkbox>
+
+  <suspend/>
+
+  <autofill label="Children_in_HH_fill" where="execute,survey,report">
+    <title>Do you have children under the age of 18 currently living in your home?</title>
+    <row label="r1" autofill="(Children.r2 or Children.r3 or Children.r4 or Children.r5 or Children.r6)">Yes</row>
+    <row label="r2" autofill="(Children.r1)">No</row>
+    <row label="none" autofill="Children_in_HH_fill.count == 0" builder:none="1"><i>None of These Classifications Apply</i></row>
+  </autofill>
+
+  <autofill label="Children_Age_Autofill" where="execute,survey,report">
+    <title>Please select the age(s) of your child(ren).</title>
+    <row label="r1" autofill="(Children_Age_Gender.r1.any or Children_Age_Gender.r2.any or Children_Age_Gender.r3.any)">0-2</row>
+    <row label="r2" autofill="(Children_Age_Gender.r4.any or Children_Age_Gender.r5.any or Children_Age_Gender.r6.any)">3-5</row>
+    <row label="r3" autofill="(Children_Age_Gender.r7.any or Children_Age_Gender.r8.any or Children_Age_Gender.r9.any)">6-8</row>
+    <row label="r4" autofill="(Children_Age_Gender.r10.any or Children_Age_Gender.r11.any or Children_Age_Gender.r12.any or Children_Age_Gender.r13.any)">9-12</row>
+    <row label="r5" autofill="(Children_Age_Gender.r14.any or Children_Age_Gender.r15.any or Children_Age_Gender.r16.any or Children_Age_Gender.r17.any or Children_Age_Gender.r18.any)">13-17</row>
+    <row label="none" autofill="Children_Age_Autofill.count == 0" builder:none="1"><i>None of These Classifications Apply</i></row>
+  </autofill>
+
+  <autofill label="Children_Gender_Autofill" where="execute,survey,report">
+    <title>Please select the age(s) and gender(s) of your children.</title>
+    <row label="r1" autofill="Children_Age_Gender.c1.any">Male</row>
+    <row label="r2" autofill="Children_Age_Gender.c2.any">Female</row>
+    <row label="none" autofill="Children_Gender_Autofill.count == 0" builder:none="1"><i>None of These Classifications Apply</i></row>
+  </autofill>
+
+  <suspend/>
+
+  <radio 
+   label="Education">
+    <title>What is the highest level of education you have completed?</title>
+    <comment>Select one</comment>
+    <row label="r1">Less than high school</row>
+    <row label="r2">High school graduate</row>
+    <row label="r3">Some college</row>
+    <row label="r4">Associate degree</row>
+    <row label="r5">Bachelor's degree</row>
+    <row label="r6">Advanced degree</row>
+    <row label="r99">Prefer not to say</row>
+  </radio>
+
+  <suspend/>
+
+  <radio 
+   label="Employment">
+    <title>Which of the following best describes your employment status?</title>
+    <comment>Select one</comment>
+    <row label="r1">Full-time employee</row>
+    <row label="r2">Part-time employee</row>
+    <row label="r3">Homemaker</row>
+    <row label="r4">Retired</row>
+    <row label="r5">Self-employed</row>
+    <row label="r6">Student</row>
+    <row label="r7">Unemployed</row>
+  </radio>
+
+  <suspend/>
+
+  <radio 
+   label="HHI">
+    <title>How much total combined annual income do all members of your household earn before taxes?</title>
+    <comment>Select one</comment>
+    <row label="r1">Less than $20,000</row>
+    <row label="r2">$20,000 to $29,999</row>
+    <row label="r3">$30,000 to $39,999</row>
+    <row label="r4">$40,000 to $49,999</row>
+    <row label="r5">$50,000 to $59,999</row>
+    <row label="r6">$60,000 to $69,999</row>
+    <row label="r7">$70,000 to $79,999</row>
+    <row label="r8">$80,000 to $89,999</row>
+    <row label="r9">$90,000 to $99,999</row>
+    <row label="r10">$100,000 to $109,999</row>
+    <row label="r11">$110,000 to $119,999</row>
+    <row label="r12">$120,000 to $129,999</row>
+    <row label="r13">$130,000 to $139,999</row>
+    <row label="r14">$140,000 to $149,999</row>
+    <row label="r15">$150,000+</row>
+    <row label="r99">Prefer not to say</row>
+  </radio>
+
+  <suspend/>
+
+  <note>Adjust the HHI_Midpoints below to match the QNR PNs.
+		If the QNR doesn't have Midpoints specified and the ranges are not standard delete Average_HHI.
+		Average_HHI not included in QNR; keep within programming for reporting.</note>
+  <float 
+   label="Average_HHI"
+   cond="HHI.any and not(HHI.r99)"
+   optional="0"
+   randomize="0"
+   where="execute,survey,report">
+    <title>Average Household Income; round to nearest Hundred for Reporting</title>
+    <exec>
+HHI_Midpoint = [10000,25000,35000,45000,55000,65000,75000,85000,95000,105000,115000,125000,135000,145000,200000]
+Average_HHI.r1.val = HHI_Midpoint[HHI.val]
+    </exec>
+
+    <row label="r1">value</row>
+  </float>
+
+  <suspend/>
+
+  <note>Next 3 elements should be used in replace of "Ethnicity"</note>
+  <radio 
+   label="Hispanic_Origin">
+    <title>Are you of Hispanic, Latino, or Spanish Origin?</title>
+    <comment>Select one</comment>
+    <row label="r1">No, not of Hispanic, Latino, or Spanish origin</row>
+    <row label="r2">Yes (Mexican, Mexican American, Chicano, Puerto Rican, Cuban, or Other Hispanic/Latino/Spanish Origin)</row>
+    <row label="r99">Prefer not to say</row>
+  </radio>
+
+  <suspend/>
+
+  <checkbox 
+   label="Race"
+   atleast="1">
+    <title>What is your race?</title>
+    <comment>Select all that apply</comment>
+    <row label="r1">American Indian or Alaska Native</row>
+    <row label="r2">Asian</row>
+    <row label="r3">Black or African American</row>
+    <row label="r4">Native Hawaiian or Other Pacific Islander</row>
+    <row label="r5">White</row>
+    <row label="r6">Some Other Race</row>
+    <row label="r99" exclusive="1">Prefer not to say</row>
+  </checkbox>
+
+  <suspend/>
+
+  <autofill label="Race_Ethnicity_Autofill" where="execute,survey,report">
+    <title>BTS. Race / Ethnicity Autofill</title>
+    <row label="r1" autofill="(Race.r1)">Total American Indian or Alaska Native</row>
+    <row label="r2" autofill="(Race.r2)">Total Asian</row>
+    <row label="r3" autofill="(Race.r3)">Total Black or African American</row>
+    <row label="r4" autofill="(Race.r4)">Total Native Hawaiian or Other Pacific Islander</row>
+    <row label="r5" autofill="(Race.r5)">Total White</row>
+    <row label="r6" autofill="(Race.r6)">Total Some Other Race</row>
+    <row label="r7" autofill="(Race.r1) and (Hispanic_Origin.r1)">Non-Hispanic American Indian or Alaska Native</row>
+    <row label="r8" autofill="(Race.r2) and (Hispanic_Origin.r1)">Non-Hispanic Asian</row>
+    <row label="r9" autofill="(Race.r3) and (Hispanic_Origin.r1)">Non-Hispanic Black or African American</row>
+    <row label="r10" autofill="(Race.r4) and (Hispanic_Origin.r1)">Non-Hispanic Native Hawaiian or Other Pacific Islander</row>
+    <row label="r11" autofill="(Race.r5) and (Hispanic_Origin.r1)">Non-Hispanic White</row>
+    <row label="r12" autofill="(Race.r6) and (Hispanic_Origin.r1)">Non-Hispanic Some Other Race</row>
+    <row label="r13" autofill="(Race.r1) and (Hispanic_Origin.r2)">Hispanic American Indian or Alaska Native</row>
+    <row label="r14" autofill="(Race.r2) and (Hispanic_Origin.r2)">Hispanic Asian</row>
+    <row label="r15" autofill="(Race.r3) and (Hispanic_Origin.r2)">Hispanic Black or African American</row>
+    <row label="r16" autofill="(Race.r4) and (Hispanic_Origin.r2)">Hispanic Native Hawaiian or Other Pacific Islander</row>
+    <row label="r17" autofill="(Race.r5) and (Hispanic_Origin.r2)">Hispanic White</row>
+    <row label="r18" autofill="(Race.r6) and (Hispanic_Origin.r2)">Hispanic Some Other Race</row>
+    <row label="r19" autofill="not(Race.r5) and (Hispanic_Origin.r2)">Total Non-White Hispanic</row>
+    <row label="r20" autofill="(Race.count&gt;1)">Multiple Races</row>
+    <row label="none" autofill="Race_Ethnicity_Autofill.count == 0" builder:none="1"><i>None of These Classifications Apply</i></row>
+  </autofill>
+
+  <suspend/>
+</block>
+
+<autofill label="qm" randomize="0" where="execute,survey">
+  <title>Quality Measure Autofill - Update Straightliner Logic if required for the study.</title>
+  <row label="r1" autofill="0">Straightliner</row>
+  <row label="none" autofill="qm.count == 0" builder:none="1"><i>None of These Classifications Apply</i></row>
+</autofill>
+
+<suspend/>
+
+<term cond="qm.r1">QM TERMINATE: Straightliner</term>
+
+<suspend/>
+
+<checkbox 
+  label="TBscorecard">
+  <title>Standard Scorecard with Loop</title>
+  <comment>Select all that apply</comment>
+  <virtual>
+questions = ["Purchase_Intent","Advantage","Uniqueness"]
+qratings = ["r1"]
+loopLabels = ["r1", "r2", "r3", "r4","r5","r6"]
+
+for eachCol in data.cols[:-1]:
+    for i,question in enumerate(questions):
+        if any([allQuestions['%s_%s' % (question, loopLabels[eachCol.index])].attr('%s' % qrating) for qrating in qratings]):
+            data[eachCol.index][i] = 1
+        else:
+            data[data.cother.index][i] = 1
+  </virtual>
+
+  <col label="c1">Concept 1</col>
+  <col label="c2">Concept 2</col>
+  <col label="c3">Concept 3</col>
+  <col label="c4">Concept 4</col>
+  <col label="c5">Concept 5</col>
+  <col label="c6">Concept 6</col>
+  <col label="cother">Other</col>
+  <row label="r1">Purchase_Intent</row>
+  <row label="r2">Advantage</row>
+  <row label="r3">Uniqueness</row>
+</checkbox>
+
+<suspend/>
+</survey>
